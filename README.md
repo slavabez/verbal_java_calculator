@@ -1,35 +1,31 @@
-# Verbal calculator in Java
+# CLI Verbal calculator in Java 
 
-### Specification
+Note: This is part of an interview process, see the Specification.md file for the specification of this project.
 
-Needs to be a console based application that lets user type a calculation using words, e.g. "two plus four divided by 2".
+## Summary
 
-##### Supported Input Values
-* The supported input values are the whole numbers between zero and ten inclusive.
-* Input values must be expressed as text, e.g. ‘one’, ‘five’, etc
-* Input values are not case-sensitive. Both ‘two and ‘TWO’ are equally valid.
+The project took me around 5 hours to complete, the longest amount of time was spent brainstorming and researching a suitable solution for evaluating string expressions, such as "5 * 4 / 3 + 4 - 7" without the use of libraries and JavaScript interpreters.
 
-##### Supported Arithmetic Operators
-* The supported arithmetic operators and the permitted natural language aliases for
-these commands are detailed in the table below.
-* Aliases are not case-sensitive. Both ‘add’ and ‘ADD’ are equally valid. 
+The approach taken for expression evaluation is detailed in the comments of the ExpressionEvaluator class. Essentially the long expression is split into parts by operator precedence (multiplication and division first, addition second). Subtraction was replaced with addition of negative integers.
 
-|Operator       |Permitted Aliases      |
-|---------------|-----------------------|
-|Add (+)        | add, plus             |
-|Subtract (-)   | subtract, minus, less |
-|Multiply (*)   | multiplied-by, times  |
-|Divide (/)     | divided-by, over      |
+### Limitations 
 
+* Although technically not a limitation (perhaps even a feature), the program allows for whole numbers more than 10 as input if they are typed in succession (e.g. "seven five times three" will actually give you seventy five times three, 75*3). I did not implement a fix as I've already spent above the suggested time limit of four hours.
 
-##### Operation Chaining 
-* Any number of operations may be chained together. For example, these calculations are all valid 
+* The application does not have unit tests to ensure proper behaviour of each function.
 
-##### Operator Precedence 
+* The application does not detect spelling errors and fails to provide a result.
 
-* When two or more operations are chained together, any multiply or divide operation
-must take precedence over any add or subtract operation, similar to how a real
-calculator works.
-* The examples section contains further examples to illustrates operator precedence.
-* Note that there is no requirement to support the use of brackets to alter operator
-precedence. 
+* Dividing by zero follows standard Java behaviour, equals infinity.
+
+### Finished project structure
+
+The project is divided into three main classes:
+
+* ConsoleInterface.java - class responsible for the 'UI'. Runs in a while loop, prompting for input in the console and outputs useful information.
+
+* ExpressionEvaluator.java - class responsible for evaluating equation strings, such as "5*2/5+5-1". Does not recognise brackets.
+
+* NaturalParser.java - class responsible for 'translating' equations from English words to their numeric and symbolic equivalents, e.g. "seven minus three times four" becomes "7-3*4". Follows the specification. Not case-sensitive.
+
+* CustomParserException - simple class inherited from Exception to throw custom errors. 

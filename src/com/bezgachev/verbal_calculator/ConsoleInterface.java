@@ -1,10 +1,11 @@
-package com.bezgachev;
+package com.bezgachev.verbal_calculator;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 class ConsoleInterface {
 
+    // Colours for console (not supported on Windows)
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
 
@@ -43,7 +44,7 @@ class ConsoleInterface {
             }
 
             if (!isParsed){
-                System.out.println(ANSI_RED + "Error parsing the number word string, please try again." + ANSI_RESET);
+                System.out.println(ANSI_RED + "Error parsing the equation, please try again." + ANSI_RESET);
             }
 
             // Print empty line for readability

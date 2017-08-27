@@ -1,4 +1,4 @@
-package com.bezgachev;
+package com.bezgachev.verbal_calculator;
 
 import java.util.regex.Pattern;
 

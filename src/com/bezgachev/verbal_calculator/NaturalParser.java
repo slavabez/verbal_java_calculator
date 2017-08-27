@@ -1,4 +1,4 @@
-package com.bezgachev;
+package com.bezgachev.verbal_calculator;
 
 import java.util.HashMap;
 
@@ -22,6 +22,7 @@ class NaturalParser {
         tempMap.put("seven", "7");
         tempMap.put("eight", "8");
         tempMap.put("nine", "9");
+        tempMap.put("ten", "10");
         tempMap.put("add", "+");
         tempMap.put("plus", "+");
         tempMap.put("subtract", "-");
@@ -35,7 +36,7 @@ class NaturalParser {
         NUMBER_MAP = tempMap;
     }
 
-    static String parseVerbalNumberOperator(String inputString) throws CustomParserException {
+    private static String parseVerbalNumberOperator(String inputString) throws CustomParserException {
 
         // Format the input, to lower case, remove spaces
         inputString = inputString.toLowerCase();
@@ -62,7 +63,7 @@ class NaturalParser {
 
         // Before returning, check to see if it's a valid expression using RegEx
         // Regex - any digits with any of \, *, +, - between them
-        String ProperEquationRegex = "^-?\\d+((\\/|\\*|\\+|-)\\d+)*$";
+        String ProperEquationRegex = "^-?\\d+(([/*+-])\\d+)*$";
         if (sb.toString().matches(ProperEquationRegex)){
             return sb.toString();
         } else {

@@ -1,4 +1,4 @@
-package com.bezgachev;
+package com.bezgachev.verbal_calculator;
 
 public class CustomParserException extends Exception {
 
