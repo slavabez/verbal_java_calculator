@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 class ConsoleInterface {
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
 
     // Terminate condition
     private boolean terminate;
@@ -23,6 +23,8 @@ class ConsoleInterface {
             System.out.println("Please type a mathematical equation, e.g. eight times five divided-by three, or type exit to quit.");
             // Input, process
             String input = in.nextLine();
+
+            // Check terminate condition
             if (Objects.equals(input, "exit")){
                 terminate = true;
                 break;
@@ -30,21 +32,21 @@ class ConsoleInterface {
 
             boolean isParsed = false;
 
-            try {
-                int parsed = NaturalParser.parseVerbalNumber(input);
+            /*try {
+                int parsed = NaturalParser.parseVerbalNumberOperator(input);
                 isParsed = true;
                 System.out.println("You typed '" + input + "', which is " + parsed  + " as integer.");
             } catch (Exception e){
                 System.out.println(e.getMessage());
-            }
+            }*/
 
-            if (!isParsed){
+            /*if (!isParsed){
                 System.out.println(ANSI_RED + "Error parsing the number word string, please try again." + ANSI_RESET);
-            }
+            }*/
 
             System.out.println("");
 
-            // Check terminate condition
+
 
         }
     }
