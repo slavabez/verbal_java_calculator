@@ -32,21 +32,22 @@ class ConsoleInterface {
 
             boolean isParsed = false;
 
-            /*try {
-                int parsed = NaturalParser.parseVerbalNumberOperator(input);
+            try {
+                String parsedEquation = NaturalParser.parseMultiWordSentence(input);
                 isParsed = true;
-                System.out.println("You typed '" + input + "', which is " + parsed  + " as integer.");
+                System.out.println("Parsed equation is: " + parsedEquation);
+                Double result = ExpressionEvaluator.computeStringEquation(parsedEquation);
+                System.out.println("Answer: " + result);
             } catch (Exception e){
                 System.out.println(e.getMessage());
-            }*/
+            }
 
-            /*if (!isParsed){
+            if (!isParsed){
                 System.out.println(ANSI_RED + "Error parsing the number word string, please try again." + ANSI_RESET);
-            }*/
+            }
 
+            // Print empty line for readability
             System.out.println("");
-
-
 
         }
     }

@@ -43,18 +43,32 @@ class NaturalParser {
         inputString = inputString.replaceAll("\\s+", "");
 
         if (!NUMBER_MAP.containsKey(inputString)) {
-            throw new CustomParserException("Invalid or unknown string, can't parse to an integer");
+            throw new CustomParserException("Attempted to convert an invalid word, please check your spelling.");
         }
 
         return NUMBER_MAP.get(inputString);
     }
 
     static String parseMultiWordSentence(String inputString) throws CustomParserException {
+        // In case there are double spaces or more than 2 spaces, replace with a single space
+        inputString = inputString.replaceAll(" +", " ");
+
         // Split by spaces, lookup using the above function, build a string
         String[] parts = inputString.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String part : parts){
+            sb.append(parseVerbalNumberOperator(part));
+        }
 
+        // Before returning, check to see if it's a valid expression using RegEx
+        // Regex - any digits with any of \, *, +, - between them
+        String ProperEquationRegex = "^-?\\d+((\\/|\\*|\\+|-)\\d+)*$";
+        if (sb.toString().matches(ProperEquationRegex)){
+            return sb.toString();
+        } else {
+            throw new CustomParserException("Result is not a valid equation, please check for errors and try again.");
+        }
 
-        return "";
     }
 
 
