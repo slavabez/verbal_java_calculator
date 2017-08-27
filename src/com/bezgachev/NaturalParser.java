@@ -25,7 +25,7 @@ class NaturalParser {
         NUMBER_MAP = tempMap;
     }
 
-    static int parseVerbalNumber(String inputString) throws InvalidNumberWordStringException {
+    static int parseVerbalNumber(String inputString) throws CustomParserException {
 
         // Format the input, to lower case, remove spaces
         inputString = inputString.toLowerCase();
@@ -33,7 +33,7 @@ class NaturalParser {
         inputString = inputString.replaceAll("\\s+", "");
 
         if (!NUMBER_MAP.containsKey(inputString)){
-            throw new InvalidNumberWordStringException("Invalid or unknown string, can't parse to an integer");
+            throw new CustomParserException("Invalid or unknown string, can't parse to an integer");
         }
 
         return NUMBER_MAP.get(inputString);

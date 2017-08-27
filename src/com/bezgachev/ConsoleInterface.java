@@ -4,6 +4,10 @@ import java.util.Objects;
 import java.util.Scanner;
 
 class ConsoleInterface {
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+
     // Terminate condition
     private boolean terminate;
     private Scanner in;
@@ -15,6 +19,8 @@ class ConsoleInterface {
 
     void run(){
         while (!terminate){
+            System.out.println("---------------------");
+            System.out.println("Please type a mathematical equation, e.g. eight times five divided-by three, or type exit to quit.");
             // Input, process
             String input = in.nextLine();
             if (Objects.equals(input, "exit")){
@@ -33,8 +39,10 @@ class ConsoleInterface {
             }
 
             if (!isParsed){
-                System.out.println("Error parsing the number word string, please try again.");
+                System.out.println(ANSI_RED + "Error parsing the number word string, please try again." + ANSI_RESET);
             }
+
+            System.out.println("");
 
             // Check terminate condition
 
